@@ -1,18 +1,12 @@
+#!/bin/bash
 
-platform='unknown'
-unamestr=$(uname)
-if [[ $unamestr=="Linux" ]]; then
-    platform="Linux"
-elif [[ $unamestr=="Darwin" ]]; then
-    platform="macOS"
-fi
-echo platform is $platform
+unamestr=$(uname -s)
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-if [[ $platform=="macOS" ]]; then
+if [[ "$unamestr" == 'Darwin' ]]; then
     . $(brew --prefix root6)/libexec/thisroot.sh
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then

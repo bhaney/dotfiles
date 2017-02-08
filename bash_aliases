@@ -1,14 +1,8 @@
 #!/bin/bash
 
-platform='unknown'
-unamestr=$(uname)
-if [[ $unamestr=="Linux" ]]; then
-    platform="Linux"
-elif [[ $unamestr=="Darwin" ]]; then
-    platform="macOS"
-fi
+unamestr=$(uname -s)
 
-if [[ $platform=="Linux" ]]; then
+if [[ "$unamestr" == 'Linux' ]]; then
     alias ll="ls -lth --color"
     alias lt="ls -ltrh --color"
     alias la="ls -lha --color"
@@ -16,7 +10,7 @@ if [[ $platform=="Linux" ]]; then
     alias du="du -ah --max-depth=1"
     alias root="root -l"
     alias makey="make && make install"
-elif [[ $platform=="macOS" ]]; then
+elif [[ "$unamestr" == 'Darwin' ]]; then
     alias lt="ls -ltrhG"
     alias la="ls -lhaG"
     alias ls="ls -Gr"

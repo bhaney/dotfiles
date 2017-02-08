@@ -24,4 +24,5 @@ alias lxplus="ssh lxplus -Y"
 alias gw="ssh atlasgw -Y"
 alias prox="ssh tier3 -D8080"
 alias octave="octave --no-gui"
+alias gitpass="eval $(ssh-agent -s) && ssh-add ~/.ssh/id_github"
 

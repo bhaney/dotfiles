@@ -1,30 +1,33 @@
 
-#activate bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-	. $(brew --prefix)/etc/bash_completion
+platform='unknown'
+unamestr=$(uname)
+if [ $unamestr=="Linux" ]; then
+    platform="Linux"
 fi
-#export paths for PyROOT
-#export ROOTSYS=/usr/local/root
-#export PATH=$ROOTSYS/bin:$PATH
-#export LD_LIBRARY_PATH=$ROOTSYS/lib:$PYTHONDIR/lib:$LD_LIBRARY_PATH
-#export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
-. $(brew --prefix root6)/libexec/thisroot.sh
+if [ $unamestr=="Darwin" ]; then
+    platform="macOS"
+fi
 
-export PS1="\h:\w $ "
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
 
-alias lt="ls -ltrhG"
-alias la="ls -lhaG"
-alias ls="ls -Gr"
-alias du="du -hc -d 1"
-alias makey="make && make inst"
-alias vi="/usr/local/bin/vim"
-alias tier3="ssh tier3 -Y"
-alias lxplus="ssh lxplus -Y"
-alias gw="ssh atlasgw -Y"
-alias prox="ssh tier3 -D8080"
-alias octave="octave --no-gui"
+if [ $platform=="macOS" ]l then
+    #activate bash completion
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
 
-export SVN_EDITOR=vim
+    . $(brew --prefix root6)/libexec/thisroot.sh
+fi
+
+#variables to export
+export SVNUSR=svn+ssh://bhaney@svn.cern.ch/reps/atlas-bhaney
+export SVN_EDITOR="vim"
+export CERN_USER=bhaney
+export USER=bhaney
+export PS1="\h:\W $ "
+
 
 tbrowser () {
     # Check a file has been specified

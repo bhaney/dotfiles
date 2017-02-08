@@ -12,7 +12,7 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-if [ $platform=="macOS" ]l then
+if [ $platform=="macOS" ]; then
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion

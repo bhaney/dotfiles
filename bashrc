@@ -7,18 +7,18 @@ fi
 if [ $unamestr=="Darwin" ]; then
     platform="macOS"
 fi
+echo platform is $platform
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
 if [ $platform=="macOS" ]; then
+    . $(brew --prefix root6)/libexec/thisroot.sh
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
     fi
-
-    . $(brew --prefix root6)/libexec/thisroot.sh
 fi
 
 #variables to export

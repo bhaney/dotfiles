@@ -4,7 +4,7 @@
 
 shell -${SHELL}
 
-caption always "%n(%t) : %C"
+caption always "%n(%t) "
 # Allow bold colors - necessary for some reason
 attrcolor b ".I"
 

@@ -3,6 +3,7 @@
 # Author: Christian Wills - cwills.sys@gmail.com
 
 shell -${SHELL}
+startup_message off
 
 caption always "%n(%t) : %C"
 # Allow bold colors - necessary for some reason

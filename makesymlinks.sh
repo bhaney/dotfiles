@@ -23,7 +23,7 @@ echo "...done"
 for file in $files; do
     if [ -f ~/.$file ]; then
         echo "Moving existing .$file from ~ to $olddir"
-        cp ~/.$file $olddir/
+        cp -i ~/.$file $olddir/
         rm ~/.$file
     fi
 

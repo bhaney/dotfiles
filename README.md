@@ -21,10 +21,9 @@ To use ssh and ssh-agent with git, follow [these instructions](https://help.gith
 
 ## Cron job for syncing
 
-On each computer where I use these dotfiles, I have a cron job to automatically pull updates from github every day. 
+To get automatic pull updates every day, set up a cron job that runs the script `pull_dotfiles.sh`. 
 
 in `crontab -e`:
-
 ```
 0 9 * * * ~/dotfiles/pull_dotfiles.sh
 ```
@@ -36,11 +35,14 @@ For more information about acrontab on lxplus, [see here](http://information-tec
 
 For security, make sure that `dotfiles/pull_dotfiles.sh` has permissions `-rxwr--r--` (chmod 744).
 
-The cron script is written with the assumption you are using a public/private key combo to interact with your repo. If you want cron to be able to use your private key in order to pull from GitHub, the key must already be present within an ssh-agent when the cron job starts running. If the key is not present in ssh-agent, the pull will fail.
+### Explaination of cron script
 
-Essentially, once you start an ssh-agent, the process never exits (unless you explicitly kill it, or you restart your computer). What you should do is save the PID of the ssh-agent process running on your machine in a file called `~/.ssh/environment`, and then have cron use this ssh-agent stored in `environment` for authentication.  
+The cron script is written with the assumption you are using a public/private key combo to interact with your repo. If you want cron to be able to use your private key in order to pull from GitHub, the key must already be present within an ssh-agent when the cron job starts running. If the key is not present in the ssh-agent, the pull will fail.
 
-`pull_dotfiles.sh`:
+Starting an ssh-agent is easy. Just run the command `eval $(ssh-agent -s)`. To add a private key to the agent, run `ssh-add ~/.ssh/pri_key` and type in the password associated with the key. Once you start the ssh-agent, the agent will never exit (unless you explicitly kill the process, or you restart your computer). Whenever you log out though, the enviormental variables associated with ssh-agent will be erased. What you should do is save the information associated with the ssh-agent in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) ssh-agent and fill the appropriate variables. This is demontrated in my own `bashrc` file.
+
+`pull_dotfiles.sh` explicitly uses the ssh-agent saved in the `~/.ssh/environment` file to run.
+
 ```bash
 #!/bin/bash
 

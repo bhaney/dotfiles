@@ -30,5 +30,5 @@ alias prox="ssh tier3 -D8080"
 alias octave="octave --no-gui"
 alias gitpass="$(ssh-agent -s) ssh-add ~/.ssh/id_github;"
 alias gpul="git pull origin master"
-alias gpus="git push origin master"
+alias gpsh="git push origin master"
 

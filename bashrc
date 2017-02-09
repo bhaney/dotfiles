@@ -6,6 +6,25 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    (umask 066; ssh-agent > "${SSH_ENV}")
+    . "${SSH_ENV}" > /dev/null
+}
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
+#for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
     . $(brew --prefix root6)/libexec/thisroot.sh
     #activate bash completion
@@ -14,6 +33,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     fi
 fi
 
+#lxplus specific paths
 if [[ $(hostname -s) == lxplus* ]]; then
     PATH=$PATH:$HOME/bin
     export PATH

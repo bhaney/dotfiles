@@ -1,12 +1,12 @@
 #!/bin/bash
 
-unamestr=$(uname -s)
+export PS1="\h:\W $ "
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-if [[ "$unamestr" == 'Darwin' ]]; then
+if [[ $(uname -s) == 'Darwin' ]]; then
     . $(brew --prefix root6)/libexec/thisroot.sh
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -14,12 +14,19 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     fi
 fi
 
+if [[ $(hostname -s) == lxplus* ]]; then
+    PATH=$PATH:$HOME/bin
+    export PATH
+    export PATH="/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH"
+fi
+
+
 #variables to export
 export SVNUSR=svn+ssh://bhaney@svn.cern.ch/reps/atlas-bhaney
 export SVN_EDITOR="vim"
 export CERN_USER=bhaney
 export USER=bhaney
-export PS1="\h:\W $ "
+export RUCIO_ACCOUNT=bhaney
 
 
 tbrowser () {

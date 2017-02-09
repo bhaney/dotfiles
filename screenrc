@@ -2,7 +2,8 @@
 # All other .screenrc files will source this file to inherit settings.
 # Author: Christian Wills - cwills.sys@gmail.com
 
-shell -${SHELL}
+#shell -${SHELL}
+defshell -bash
 startup_message off
 
 caption always "%n(%t) "
@@ -32,3 +33,8 @@ hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= 
 bind f eval "hardstatus ignore"
 # Show hardstatus: ctrl-a F
 bind F eval "hardstatus alwayslastline"
+
+#make a new window
+bind - eval split 'focus' screen
+
+bind x eval kill remove

@@ -2,10 +2,12 @@
 
 export PS1="\h:\W $ "
 
+#load the aliases
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+#set up the ssh-agent already present, or start a new ssh-agent
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {

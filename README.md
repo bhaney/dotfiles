@@ -39,15 +39,22 @@ For security, make sure that `dotfiles/pull_dotfiles.sh` has permissions `-rxwr-
 
 The cron script is written with the assumption you are using a public/private key combo to interact with your repo. If you want cron to be able to use your private key in order to pull from GitHub, the key must already be present within an ssh-agent when the cron job starts running. If the key is not present in the ssh-agent, the pull will fail.
 
-Starting an ssh-agent is easy. Just run the command `eval $(ssh-agent -s)`. To add a private key to the agent, run `ssh-add ~/.ssh/pri_key` and type in the password associated with the key. Once you start the ssh-agent, the agent will never exit (unless you explicitly kill the process, or you restart your computer). Whenever you log out though, the enviormental variables associated with ssh-agent will be erased. What you should do is save the information associated with the ssh-agent in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) ssh-agent and fill the appropriate variables. This is demontrated in my own `bashrc` file.
+Starting an ssh-agent is easy. Just run the command 
+`eval $(ssh-agent -s)` 
+To add a private key to the agent, run 
+`ssh-add ~/.ssh/pri_key` 
+and type in the password associated with the key. ssh-agent allows you to not have to type in your key's password every time you use it. Also, once you start the ssh-agent, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. 
 
-`pull_dotfiles.sh` explicitly uses the ssh-agent saved in the `~/.ssh/environment` file to run.
+Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the ssh-agent in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) ssh-agent, rather than creating a new agent.  This is demontrated in my own `bashrc` file.
+
+`pull_dotfiles.sh` explicitly uses the ssh-agent saved in the `~/.ssh/environment` file to run the cron job.
 
 ```bash
 #!/bin/bash
 
 /bin/echo "git pull updates from dotfiles.git"
 
+#ssh-agent variable info stored here
 SSH_ENV="$HOME/.ssh/environment"
 
 # Source SSH settings, if applicable
@@ -55,7 +62,7 @@ if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null
 else
-    echo "No ssh-agent present. Create an agent, save its PID in .ssh/enviornment, and make sure it is running with the right ssh key for github."
+    echo "No ssh-agent present. Create an agent, save its info in .ssh/enviornment, and make sure it is running with the right ssh key for github."
     exit 1
 fi
 

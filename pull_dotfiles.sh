@@ -8,7 +8,9 @@ SSH_ENV="$HOME/.ssh/environment"
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        echo 'ssh-agent saved in SSH_ENV no longer running. Start a new agent.';
+    }
 else
     echo "No ssh-agent present. Create an agent, save its info in .ssh/enviornment, and make sure it is running with the right ssh key for github."
     exit 1

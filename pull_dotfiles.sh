@@ -12,7 +12,7 @@ if [ -f "${SSH_ENV}" ]; then
         echo 'ssh-agent that was saved in SSH_ENV is no longer running. Start a new agent.';
     }
 else
-    echo "No ssh-agent present. Create an agent, save its info in .ssh/enviornment, and make sure it is running with the right ssh key for github."
+    echo 'No ssh-agent present. Create an agent, save its info in .ssh/enviornment, and make sure it is running with the right ssh key for github.'
     exit 1
 fi
 

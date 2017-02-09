@@ -28,8 +28,8 @@ alias lxplus="ssh lxplus -Y"
 alias gw="ssh atlasgw -Y"
 alias prox="ssh tier3 -D8080"
 alias octave="octave --no-gui"
-alias gpul="git pull origin master"
-alias gpsh="git push origin master"
+alias gitpul="git pull origin master"
+alias gitpus="git push origin master"
 
 #putting keys in ssh-agent
 alias gitpass="$(ssh-agent -s) ssh-add ~/.ssh/id_github;"

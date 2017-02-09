@@ -40,9 +40,13 @@ For security, make sure that `dotfiles/pull_dotfiles.sh` has permissions `-rxwr-
 The cron script is written with the assumption you are using a public/private key combo to interact with your repo. If you want cron to be able to use your private key in order to pull from GitHub, the key must already be present within an ssh-agent when the cron job starts running. If the key is not present in the ssh-agent, the pull will fail.
 
 Starting an ssh-agent is easy. Just run the command 
-```eval $(ssh-agent -s)```
+```
+eval $(ssh-agent -s)
+```
  To add a private key to the agent, run 
-```ssh-add ~/.ssh/pri_key``` 
+```
+ssh-add ~/.ssh/pri_key
+``` 
 and type in the password associated with the key. ssh-agent allows you to not have to type in your key's password every time you use it. Also, once you start the ssh-agent, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. 
 
 Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the ssh-agent in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) ssh-agent, rather than creating a new agent.  This is demontrated in my own `bashrc` file.

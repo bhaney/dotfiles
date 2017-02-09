@@ -37,9 +37,9 @@ For security, make sure that `dotfiles/pull_dotfiles.sh` has permissions `-rxwr-
 
 ### Explaination of cron script
 
-The cron script is written with the assumption you are using a public/private key combo to interact with your repo. If you want cron to be able to use your private key in order to pull from GitHub, the key must already be present within an ssh-agent when the cron job starts running. If the key is not present in the ssh-agent, the pull will fail.
+The cron script is written with the assumption you are using ssh to interact with your repo. If you want cron to be able to use your private key in order to pull from GitHub, the key must already be present within an `ssh-agent` when the cron job starts running. If the key is not present in the ssh-agent, the pull will fail.
 
-Starting an ssh-agent is easy. Just run the command 
+Starting an `ssh-agent` is easy. Just run the command 
 ```
 eval $(ssh-agent -s)
 ```
@@ -47,11 +47,11 @@ eval $(ssh-agent -s)
 ```
 ssh-add ~/.ssh/pri_key
 ``` 
-and type in the password associated with the key. ssh-agent allows you to not have to type in your key's password every time you use it. Also, once you start the ssh-agent, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. 
+and type in the password associated with the key. `ssh-agent` allows you to not have to type in your key's password every time you use it. Also, once you start the `ssh-agent`, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. 
 
-Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the ssh-agent in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) ssh-agent, rather than creating a new agent.  This is demontrated in my own `bashrc` file.
+Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the `ssh-agent` in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) `ssh-agent`, rather than creating a new agent.  This is demontrated in the `bashrc` file.
 
-`pull_dotfiles.sh` explicitly uses the ssh-agent saved in the `~/.ssh/environment` file to run the cron job.
+`pull_dotfiles.sh` explicitly uses the `ssh-agent` saved in the `~/.ssh/environment` file to run the cron job.
 
 ```bash
 #!/bin/bash

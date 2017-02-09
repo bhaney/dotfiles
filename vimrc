@@ -52,8 +52,6 @@ set expandtab       " tabs are converted to spaces
 set tabstop=4       " numbers of spaces of tab character
 set shiftwidth=4    " numbers of spaces to (auto)indent
 
-set clipboard=unnamed
-
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function ToggleWrap()
   if &wrap

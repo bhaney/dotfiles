@@ -28,7 +28,13 @@ alias lxplus="ssh lxplus -Y"
 alias gw="ssh atlasgw -Y"
 alias prox="ssh tier3 -D8080"
 alias octave="octave --no-gui"
-alias gitpass="$(ssh-agent -s) ssh-add ~/.ssh/id_github;"
 alias gpul="git pull origin master"
 alias gpsh="git push origin master"
 
+#putting keys in ssh-agent
+alias gitpass="$(ssh-agent -s) ssh-add ~/.ssh/id_github;"
+if [[ $(hostname -s) == at3* ]]; then
+    alias gitpass="$(ssh-agent -s) ssh-add ~/.ssh/id_github2;"
+elif [[ $(hostname -s) == lxplus* ]]; then
+    alias gitpass="$(ssh-agent -s) ssh-add ~/.ssh/id_github3;"
+fi

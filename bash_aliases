@@ -1,6 +1,7 @@
 #!/bin/bash
 
 unamestr=$(uname -s)
+echo test
 
 if [[ "$unamestr" == 'Linux' ]]; then
     alias ll="ls -lth --color"

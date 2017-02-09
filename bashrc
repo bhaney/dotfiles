@@ -43,7 +43,8 @@ fi
 
 #variables to export
 export SVNUSR=svn+ssh://bhaney@svn.cern.ch/reps/atlas-bhaney
-export SVN_EDITOR="vim"
+export SVN_EDITOR=vim
+export EDITOR=vim
 export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
 

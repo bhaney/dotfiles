@@ -1,6 +1,6 @@
 # Dotfiles
 
-This is a simple dotfile manager that is used to keep dotfiles synched between multiple macOS and Linux machines. Most alises are specific to my names and accounts, so be sure to change `bashrc` and `bash_aliases` to suit your purposes if you decide to use them as a template.
+This is a simple manager used to keep dotfiles synched between multiple Linux and macOS machines. Most alises are specific to my names and accounts, so be sure to change `bashrc` and `bash_aliases` to suit your purposes if you decide to use them as a template.
 
 
 Based heavily on [Michael J. Smalley's dotfiles](https://github.com/michaeljsmalley/dotfiles)

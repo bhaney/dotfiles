@@ -51,7 +51,7 @@ and type in the password associated with the key. `ssh-agent` allows you to not 
 
 You can check if an `ssh-agent` is already running by using `ps x`.
 
-Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the `ssh-agent` in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) `ssh-agent`, rather than creating a new agent.  This is demontrated in the `bashrc` file.
+Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the `ssh-agent` in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) `ssh-agent`, rather than creating a new agent. How to do this is demontrated in the `bashrc` file.
 
 `pull_dotfiles.sh` explicitly uses the `ssh-agent` saved in the `~/.ssh/environment` file to run the cron job.
 

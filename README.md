@@ -29,9 +29,9 @@ in `crontab -e`:
 ```
 or if you're using this on CERN lxplus, you should use `acrontab -e`:
 ```
-0 9 * * * lxplus.cern.ch ~/dotfiles/pull_dotfiles.sh
+0 9 * * * lxplus025.cern.ch ~/dotfiles/pull_dotfiles.sh
 ```
-For more information about acrontab on lxplus, [see here](http://information-technology.web.cern.ch/services/fe/afs/howto/authenticate-processes).
+For more information about acrontab on lxplus, [see here](http://information-technology.web.cern.ch/services/fe/afs/howto/authenticate-processes). Unless you have an ssh-agent running on every lxplus node, you should specify the node to run the job on.
 
 For security, make sure that `dotfiles/pull_dotfiles.sh` has permissions `-rxwr--r--` (chmod 744).
 
@@ -47,7 +47,7 @@ eval $(ssh-agent -s)
 ```
 ssh-add ~/.ssh/pri_key
 ``` 
-and type in the password associated with the key. `ssh-agent` allows you to not have to type in your key's password every time you use it. Also, once you start the `ssh-agent`, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. 
+and type in the password associated with the key. `ssh-agent` allows you to not have to type in your key's password every time you use it. Also, once you start the `ssh-agent`, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. You can check if an `ssh-agent` is running by using `ps x`.
 
 Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the `ssh-agent` in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) `ssh-agent`, rather than creating a new agent.  This is demontrated in the `bashrc` file.
 

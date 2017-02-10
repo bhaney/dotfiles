@@ -43,11 +43,13 @@ Starting an `ssh-agent` is easy. Just run the command
 ```
 eval $(ssh-agent -s)
 ```
- To add a private key to the agent, run 
+ To then add a private key to the agent, run 
 ```
 ssh-add ~/.ssh/pri_key
 ``` 
-and type in the password associated with the key. `ssh-agent` allows you to not have to type in your key's password every time you use it. Also, once you start the `ssh-agent`, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. You can check if an `ssh-agent` is running by using `ps x`.
+and type in the password associated with the key. `ssh-agent` allows you to not have to type in your key's password every time you use it. Also, once you start the `ssh-agent`, the agent will never exit (unless you explicitly kill the process, or you restart your computer), so this means cron can use it too. 
+
+You can check if an `ssh-agent` is already running by using `ps x`.
 
 Whenever you log out though, the enviormental variables associated with the agent will be erased. What you should do is save the information associated with the `ssh-agent` in a file called `~/.ssh/environment`, and then every time you log in, have your `.bashrc` retreive the information of the (still running) `ssh-agent`, rather than creating a new agent.  This is demontrated in the `bashrc` file.
 

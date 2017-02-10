@@ -36,5 +36,9 @@ bind F eval "hardstatus alwayslastline"
 
 #make a new window
 bind - eval split 'focus' screen
-
+#bind x to kill the pane and close it
 bind x eval kill remove
+#bind space to switch panes
+bind ' '  focus
+#unbind control-a from going to previous pane
+bind ^a

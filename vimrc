@@ -22,7 +22,8 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" set line numbers to the left side
+" limit line length to 79 characters
+:set tw=80
 
 "if has("vms")
 "  set nobackup		" do not keep a backup file, use versions instead

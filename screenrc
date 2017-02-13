@@ -35,10 +35,16 @@ bind f eval "hardstatus ignore"
 bind F eval "hardstatus alwayslastline"
 
 #make a new window
-bind - eval split 'focus' screen
+bind - eval split 'focus' 'screen 1'
 #bind x to kill the pane and close it
 bind x eval kill remove
 #bind w to switch panes
 bind w focus
 #unbind control-a from going to previous pane
 bind ^a
+
+#screen numbers start at 1, not 0
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen 1

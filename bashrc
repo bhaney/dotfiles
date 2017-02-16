@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 export PS1="\h:\W $ "
 
 #load the aliases
@@ -11,15 +12,13 @@ fi
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
-    echo "Initialising new SSH agent..."
+    tty > /dev/null && echo "Initialising new SSH agent..."
     (umask 066; ssh-agent > "${SSH_ENV}")
     . "${SSH_ENV}" > /dev/null
 }
 
 # Source SSH settings, if applicable
-if [[ $(hostname -s) == lxplus* ]]; then
-    echo 'start ssh agent manually if needed on lxplus.';
-elif [ -f "${SSH_ENV}" ]; then
+if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
         start_agent;

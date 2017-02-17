@@ -22,6 +22,7 @@ if [[ $(hostname -s) == lxplus* ]]; then
     alias makepdf="make cleanpdf && make"
 fi
 
+alias pwd="pwd -P"
 alias grid="voms-proxy-init -voms atlas"
 alias tier3="ssh tier3 -Y"
 alias lxplus="ssh lxplus -Y"

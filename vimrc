@@ -23,7 +23,9 @@ set nocompatible
 set backspace=indent,eol,start
 
 " limit line length to 79 characters
-" :set tw=80
+" set tw=80
+" put a color marker when you exceed 80 characters on a line
+set colorcolumn=80
 
 "if has("vms")
 "  set nobackup		" do not keep a backup file, use versions instead

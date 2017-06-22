@@ -25,7 +25,7 @@ set backspace=indent,eol,start
 " limit line length to 79 characters
 " set tw=80
 " put a color marker when you exceed 80 characters on a line
-set colorcolumn=85
+autocmd FileType python setlocal colorcolumn=85
 
 "if has("vms")
 "  set nobackup		" do not keep a backup file, use versions instead

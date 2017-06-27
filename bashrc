@@ -54,7 +54,7 @@ export EDITOR=vim
 export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
 
-
+#use broot to launch TBrowser from the command line
 tbrowser () {
     # Check a file has been specified
     if (( $# == 0 )); then

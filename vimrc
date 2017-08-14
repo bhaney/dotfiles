@@ -134,4 +134,4 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-
+autocmd filetype crontab setlocal nobackup nowritebackup

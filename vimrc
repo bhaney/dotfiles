@@ -24,8 +24,9 @@ set backspace=indent,eol,start
 
 " limit line length to 79 characters
 " set tw=80
-" put a color marker when you exceed 80 characters on a line
+" put a color marker when you exceed 85 characters on a line
 autocmd FileType python setlocal colorcolumn=85
+autocmd FileType tex setlocal colorcolumn=85
 
 "if has("vms")
 "  set nobackup		" do not keep a backup file, use versions instead
@@ -107,6 +108,7 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
+  autocmd FileType tex setlocal textwidth=85
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -135,3 +137,17 @@ if !exists(":DiffOrig")
 endif
 
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+" Latex-Suite settings
+" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
+filetype plugin on
+
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'

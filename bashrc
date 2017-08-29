@@ -22,7 +22,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 fi
 
 #lxplus specific paths
-if [[ $(hostname -s) == lxplus* ]]; then
+if [[ $(hostname -s) == lxplus* ]] || [[ $(hostname -s) == pcpenn* ]]; then
     PATH=$PATH:$HOME/bin
     export PATH
     export PATH="/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH"

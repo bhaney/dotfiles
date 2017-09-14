@@ -32,6 +32,7 @@ alias octave="octave --no-gui"
 alias gitpul="git pull origin master"
 alias gitpus="git push origin master"
 alias sr="screen -r"
+alias wttr="wget wttr.in"
 
 #putting keys in ssh-agent
 alias gitpass="ssh-add ~/.ssh/id_github;"

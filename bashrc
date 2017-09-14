@@ -26,6 +26,7 @@ if [[ $(hostname -s) == lxplus* ]] || [[ $(hostname -s) == pcpenn* ]]; then
     PATH=$PATH:$HOME/bin
     export PATH
     export PATH="/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH"
+    eosfusebind
 fi
 
 

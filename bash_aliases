@@ -34,10 +34,3 @@ alias gitpus="git push origin master"
 alias sr="screen -r"
 alias wttr="curl wttr.in"
 
-#putting keys in ssh-agent
-alias gitpass="ssh-add ~/.ssh/id_github;"
-if [[ $(hostname -s) == at3* ]]; then
-    alias gitpass="ssh-add ~/.ssh/id_github2;"
-elif [[ $(hostname -s) == lxplus* ]]; then
-    alias gitpass="ssh-add ~/.ssh/id_github3;"
-fi

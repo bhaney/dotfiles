@@ -39,6 +39,10 @@ export EDITOR=vim
 export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
 
+#set up binaries in the .local directory
+export PATH=$HOME/.local/bin:$PATH
+export PYTHONPATH=$PYTHONPATH:$HOME/.local
+
 #use broot to launch TBrowser from the command line
 tbrowser () {
     # Check a file has been specified

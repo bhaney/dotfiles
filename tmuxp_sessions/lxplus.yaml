@@ -20,7 +20,9 @@ windows:
         - cd ../run
 
   - window_name: datadir
-    layout: main-vertical
+    layout: main-horizontal
+    options:
+      main-pane-height: 30
     shell_command_before:
       - cd ~/workarea/HZZCutFlow
       - setupATLAS
@@ -29,8 +31,9 @@ windows:
       - asetup
     panes:
       - shell_command:
-        - cd ~/eos-atlas/public/HZZ
+        - cd ~/eos-atlas/public/HZZ/athena_work
+        - asetup
       - shell_command:
-        - cd ../source/H4lCutFlow/util
+        - cd ~/eos-atlas/public/HZZ
 
 

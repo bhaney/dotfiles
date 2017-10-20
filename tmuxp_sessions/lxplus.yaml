@@ -1,0 +1,36 @@
+session_name: lxplus
+windows:
+  - window_name: HZZCutFlow
+    layout: main-vertical
+    focus: true
+    options:
+      main-pane-width: 100
+    shell_command_before:
+      - cd ~/workarea/HZZCutFlow
+      - setupATLAS
+      - cd build
+      - source ./*/setup.sh
+      - asetup
+    panes:
+      - shell_command:
+        - cd ../source
+        focus: true
+      - shell_command:
+      - shell_command:
+        - cd ../run
+
+  - window_name: datadir
+    layout: main-vertical
+    shell_command_before:
+      - cd ~/workarea/HZZCutFlow
+      - setupATLAS
+      - cd build
+      - source ./*/setup.sh
+      - asetup
+    panes:
+      - shell_command:
+        - cd ~/eos-atlas/public/HZZ
+      - shell_command:
+        - cd ../source/H4lCutFlow/util
+
+

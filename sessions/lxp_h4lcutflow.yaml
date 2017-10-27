@@ -24,11 +24,7 @@ windows:
     options:
       main-pane-height: 30
     shell_command_before:
-      - cd ~/workarea/HZZCutFlow
       - setupATLAS
-      - cd build
-      - source ./*/setup.sh
-      - asetup
     panes:
       - shell_command:
         - cd ~/eos-atlas/public/HZZ/athena_work

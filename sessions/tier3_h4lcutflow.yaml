@@ -1,0 +1,34 @@
+session_name: tier3
+windows:
+  - window_name: HZZCutFlow
+    layout: main-vertical
+    focus: true
+    options:
+      main-pane-width: 100
+    shell_command_before:
+      - cd ~/HZZCutFlow
+      - setupATLAS
+      - cd build
+      - source ./*/setup.sh
+      - asetup
+    panes:
+      - shell_command:
+        - cd ../source
+        focus: true
+      - shell_command:
+      - shell_command:
+        - cd ../run
+
+  - window_name: datadir
+    layout: main-horizontal
+    options:
+      main-pane-height: 30
+    shell_command_before:
+      - setupATLAS
+    panes:
+      - shell_command:
+        - cd ~/datadir/athena_work
+      - shell_command:
+        - cd ../datadir/
+
+

@@ -43,21 +43,3 @@ export RUCIO_ACCOUNT=bhaney
 export PATH=$HOME/.local/bin:$PATH
 export PYTHONPATH=$PYTHONPATH:$HOME/.local
 
-#use broot to launch TBrowser from the command line
-tbrowser () {
-    # Check a file has been specified
-    if (( $# == 0 )); then
-        echo "No file(s) specified."
-    else
-    # For each file, check it exists
-    for i; do
-        if [ ! -f $i ]; then
-            echo "Could not find file $i"
-            return 1;
-        fi
-    done
-    root -l $* $HOME/.macros/newBrowser.C
-    fi
-}
-
-alias broot="tbrowser"

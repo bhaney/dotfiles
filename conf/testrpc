@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# chkconfig: 35 90 12
+# description: ganache-cli testRPC
+# process name: testrpc
+
+# Get function from functions library
+. /etc/rc.d/init.d/functions
+
+TESTRPC="/usr/bin/ganache-cli"
+RETVAL=0
+
+getpid() {
+    pid=`ps -eo pid,command | grep ganache-cli | grep -v grep | awk '{ print $1 }'`
+}
+
+# Start the service testrpc
+start() {
+        echo -n $"Starting testRPC server: "
+	getpid
+	if [ -z "$pid" ]; then
+		$TESTRPC -h 172.31.88.43 -s 55 > /dev/null &
+		RETVAL=$?
+	fi
+	if [ $RETVAL -eq 0 ]; then
+		touch /var/lock/subsys/testrpc
+		echo_success
+	else
+		echo_failure
+	fi
+	echo
+	return $RETVAL
+}
+
+# Stop the service testrpc
+stop() {
+	echo -n $"Stopping testRPC: "
+	getpid
+	RETVAL=$?
+	if [ -n "$pid" ]; then
+		kill -HUP $pid
+		sleep 1
+		getpid
+		if [ -z "$pid" ]; then
+			rm -f /var/lock/subsys/testrpc
+			echo_success
+		else
+			echo_failure
+		fi
+	else
+		echo -n $"testRPC already Stopped."
+		echo_failure
+	fi
+	echo
+	return $RETVAL
+}
+
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        getpid
+	if [ -n "$pid" ]; then
+                echo "testRPC (pid $pid) is running..."
+        else
+                RETVAL=1
+                echo "testRPC is stopped"
+        fi
+        ;;
+  restart|reload|condrestart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit $RETVAL

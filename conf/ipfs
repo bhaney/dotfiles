@@ -1,29 +1,30 @@
 #!/bin/bash
 #
 # chkconfig: 35 90 12
-# description: ganache-cli testRPC
-# process name: testrpc
+# description: launch ipfs daemon
+# process name: ipfs
 
 # Get function from functions library
 . /etc/rc.d/init.d/functions
 
-TESTRPC="/usr/bin/ganache-cli"
+IPFS="/usr/local/bin/ipfs"
 RETVAL=0
 
 getpid() {
-    pid=`ps -eo pid,command | grep ganache-cli | grep -v grep | awk '{ print $1 }'`
+    pid=`ps -eo pid,command | grep ipfs | grep -v grep | awk '{ print $1 }'`
 }
 
 # Start the service testrpc
 start() {
-        echo -n $"Starting testRPC server: "
+        echo -n $"Starting IPFS server: "
 	getpid
 	if [ -z "$pid" ]; then
-		$TESTRPC -h 172.31.88.43 -s 55 > /dev/null &
+		$IPFS init
+		$IPFS daemon > /dev/null &
 		RETVAL=$?
 	fi
 	if [ $RETVAL -eq 0 ]; then
-		touch /var/lock/subsys/testrpc
+		touch /var/lock/subsys/ipfs
 		echo_success
 	else
 		echo_failure
@@ -34,7 +35,7 @@ start() {
 
 # Stop the service testrpc
 stop() {
-	echo -n $"Stopping testRPC: "
+	echo -n $"Stopping IPFS: "
 	getpid
 	RETVAL=$?
 	if [ -n "$pid" ]; then
@@ -42,13 +43,13 @@ stop() {
 		sleep 1
 		getpid
 		if [ -z "$pid" ]; then
-			rm -f /var/lock/subsys/testrpc
+			rm -f /var/lock/subsys/ipfs
 			echo_success
 		else
 			echo_failure
 		fi
 	else
-		echo -n $"testRPC already Stopped."
+		echo -n $"IPFS already Stopped."
 		echo_failure
 	fi
 	echo
@@ -65,12 +66,11 @@ case "$1" in
         ;;
   status)
         getpid
-	if [ -n "$pid" ]; then
-                echo "testRPC (pid $pid) is running..."
-		strace -p$pid -s9999 -e write 2>&1 | sed -En 's/^write[(][0-9]*, "(.*)", [0-9]*[)]\s*=\s*[0-9]*/\1/p'
+	    if [ -n "$pid" ]; then
+            echo "IPFS (pid $pid) is running."
         else
-                RETVAL=1
-                echo "testRPC is stopped"
+            RETVAL=1
+            echo "IPFS is stopped"
         fi
         ;;
   restart|reload|condrestart)

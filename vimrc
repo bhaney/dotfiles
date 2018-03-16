@@ -22,11 +22,6 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" limit line length to 79 characters
-" set tw=80
-" put a color marker when you exceed 85 characters on a line
-autocmd FileType python setlocal colorcolumn=85
-autocmd FileType tex setlocal colorcolumn=85
 
 "if has("vms")
 "  set nobackup		" do not keep a backup file, use versions instead
@@ -109,6 +104,14 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
   autocmd FileType tex setlocal textwidth=85
+
+  " limit line length to 79 characters
+  " set tw=80
+  " put a color marker when you exceed 85 characters on a line
+  autocmd FileType python setlocal colorcolumn=85
+  autocmd FileType tex setlocal colorcolumn=85
+  " set tabs on file types accordingly
+  autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler

@@ -21,16 +21,9 @@ set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-
-"if has("vms")
-"  set nobackup		" do not keep a backup file, use versions instead
-"else
-"  set backup		" keep a backup file
-"endif
 set history=100		" keep 100 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
+set ruler		    " show the cursor position all the time
+set showcmd		    " display incomplete commands
 set incsearch		" do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
@@ -43,10 +36,10 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-
 " disable mouse in vim so it doesn't enter visual mode
 set mouse-=a
 
+" set tabs to be spaces
 set expandtab       " tabs are converted to spaces
 set tabstop=4       " numbers of spaces of tab character
 set shiftwidth=4    " numbers of spaces to (auto)indent
@@ -111,7 +104,7 @@ if has("autocmd")
   autocmd FileType python setlocal colorcolumn=85
   autocmd FileType tex setlocal colorcolumn=85
   " set tabs on file types accordingly
-  autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
+  autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -139,7 +132,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-autocmd filetype crontab setlocal nobackup nowritebackup
+" autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Latex-Suite settings
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.

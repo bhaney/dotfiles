@@ -98,6 +98,8 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   autocmd FileType tex setlocal textwidth=85
 
+  autocmd filetype crontab setlocal nobackup nowritebackup
+
   " limit line length to 79 characters
   " set tw=80
   " put a color marker when you exceed 85 characters on a line
@@ -132,7 +134,6 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Latex-Suite settings
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.

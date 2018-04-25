@@ -14,7 +14,7 @@ fi
 
 #for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
-    . $(brew --prefix root6)/libexec/thisroot.sh
+    . $(brew --prefix root6)/bin/thisroot.sh
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion

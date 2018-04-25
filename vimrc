@@ -97,7 +97,6 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
   autocmd FileType tex setlocal textwidth=85
-
   autocmd FileType crontab setlocal nobackup nowritebackup
 
   " limit line length to 79 characters

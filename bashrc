@@ -14,10 +14,16 @@ fi
 
 #for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
-    . $(brew --prefix root6)/bin/thisroot.sh
+    if [ -d "/usr/local/anaconda3/bin" ]; then
+        export PATH=/usr/local/anaconda3/bin:$PATH
+    fi
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
+    fi
+    #load ROOT if available
+    if [ -f $(brew --prefix root6)/bin/thisroot.sh ]; then
+    . $(brew --prefix root6)/bin/thisroot.sh
     fi
 fi
 
@@ -39,7 +45,13 @@ export EDITOR=vim
 export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
 
+#set up binaries in the npm directory
+if [ -d "$HOME/npm/bin" ]; then
+    export PATH=$HOME/npm/bin:$PATH
+fi
 #set up binaries in the .local directory
-export PATH=$HOME/npm/bin:$HOME/.local/bin:$PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/.local
+if [ -d "$HOME/npm/bin" ]; then
+    export PATH=$HOME/.local/bin:$PATH
+    export PYTHONPATH=$PYTHONPATH:$HOME/.local
+fi
 

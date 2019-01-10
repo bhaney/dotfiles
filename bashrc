@@ -55,6 +55,11 @@ if [ -d "$HOME/npm/bin" ]; then
     export PATH=$HOME/npm/bin:$PATH
 fi
 
+#set up binaries in the rust directory
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH=$HOME/.cargo/bin:$PATH
+fi
+
 #set up binaries in the go directory
 if [ -d "/usr/local/opt/go/libexec/bin" ]; then
     export PATH=$PATH:/usr/local/opt/go/libexec/bin

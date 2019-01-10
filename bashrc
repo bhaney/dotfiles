@@ -11,9 +11,9 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-
 #for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
+    #activate conda if available
     if [ -d "/usr/local/anaconda3" ]; then
         . /usr/local/anaconda3/etc/profile.d/conda.sh
     fi
@@ -37,7 +37,6 @@ if [[ $(hostname -s) == lxplus* ]] || [[ $(hostname -s) == pcpenn* ]]; then
     alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh' 
 fi
 
-
 #variables to export
 export SVNUSR=svn+ssh://bhaney@svn.cern.ch/reps/atlas-bhaney
 export SVN_EDITOR=vim
@@ -45,14 +44,19 @@ export EDITOR=vim
 export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
 
+#set up binaries in the .local directory
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH=$HOME/.local/bin:$PATH
+    export PYTHONPATH=$PYTHONPATH:$HOME/.local
+fi
+
 #set up binaries in the npm directory
 if [ -d "$HOME/npm/bin" ]; then
     export PATH=$HOME/npm/bin:$PATH
 fi
 
-#set up binaries in the .local directory
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
-    export PYTHONPATH=$PYTHONPATH:$HOME/.local
+#set up binaries in the go directory
+if [ -d "/usr/local/opt/go/libexec/bin" ]; then
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
 fi
 

@@ -11,14 +11,19 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-
 #for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
-    . $(brew --prefix root6)/bin/thisroot.sh
-    export PATH=/opt/brew/opt/python/libexec/bin:$PATH
+    #activate conda if available
+    if [ -d "/usr/local/anaconda3" ]; then
+        . /usr/local/anaconda3/etc/profile.d/conda.sh
+    fi
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
+    fi
+    #load ROOT if available
+    if [ -f /usr/local/bin/thisroot.sh ]; then
+    . /usr/local/bin/thisroot.sh
     fi
 fi
 
@@ -32,7 +37,6 @@ if [[ $(hostname -s) == lxplus* ]] || [[ $(hostname -s) == pcpenn* ]]; then
     alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh' 
 fi
 
-
 #variables to export
 export SVNUSR=svn+ssh://bhaney@svn.cern.ch/reps/atlas-bhaney
 export SVN_EDITOR=vim
@@ -41,6 +45,23 @@ export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
 
 #set up binaries in the .local directory
-export PATH=$HOME/npm/bin:$HOME/.local/bin:$PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/.local
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH=$HOME/.local/bin:$PATH
+    export PYTHONPATH=$PYTHONPATH:$HOME/.local
+fi
+
+#set up binaries in the npm directory
+if [ -d "$HOME/npm/bin" ]; then
+    export PATH=$HOME/npm/bin:$PATH
+fi
+
+#set up binaries in the rust directory
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH=$HOME/.cargo/bin:$PATH
+fi
+
+#set up binaries in the go directory
+if [ -d "/usr/local/opt/go/libexec/bin" ]; then
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+fi
 

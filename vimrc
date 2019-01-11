@@ -94,16 +94,14 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=85
   autocmd FileType crontab setlocal nobackup nowritebackup
 
   " limit line length to 79 characters
   " set tw=80
   " put a color marker when you exceed 85 characters on a line
   autocmd FileType python setlocal colorcolumn=85
-  autocmd FileType tex setlocal colorcolumn=85
+  "autocmd FileType tex setlocal colorcolumn=85
+  autocmd FileType tex setlocal formatoptions-=a
   " set tabs on file types accordingly
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 

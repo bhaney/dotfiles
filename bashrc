@@ -13,6 +13,10 @@ fi
 
 #for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
+    #set up binaries from homebrew
+    if [ -d "/usr/local/bin" ]; then
+        export PATH=/usr/local/bin:$PATH
+    fi
     #activate conda if available
     if [ -d "/usr/local/anaconda3" ]; then
         . /usr/local/anaconda3/etc/profile.d/conda.sh
@@ -25,16 +29,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     if [ -f /usr/local/bin/thisroot.sh ]; then
     . /usr/local/bin/thisroot.sh
     fi
-fi
-
-#lxplus specific paths
-if [[ $(hostname -s) == lxplus* ]] || [[ $(hostname -s) == pcpenn* ]]; then
-    PATH=$PATH:$HOME/bin
-    export PATH
-    export PATH="/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH"
-    eosfusebind
-    export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
-    alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh' 
 fi
 
 #variables to export

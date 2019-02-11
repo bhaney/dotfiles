@@ -11,23 +11,24 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+
+#activate conda if available
+if [ -d "/usr/local/anaconda3" ]; then
+    . /usr/local/anaconda3/etc/profile.d/conda.sh
+fi
+
+#load ROOT if available
+if [ -f /usr/local/bin/thisroot.sh ]; then
+. /usr/local/bin/thisroot.sh
+fi
+
 #for homebrew on macOS
 if [[ $(uname -s) == 'Darwin' ]]; then
     #set up binaries from homebrew
-    if [ -d "/usr/local/bin" ]; then
-        export PATH=/usr/local/bin:$PATH
-    fi
-    #activate conda if available
-    if [ -d "/usr/local/anaconda3" ]; then
-        . /usr/local/anaconda3/etc/profile.d/conda.sh
-    fi
+    export PATH=/usr/local/bin:$PATH
     #activate bash completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
-    fi
-    #load ROOT if available
-    if [ -f /usr/local/bin/thisroot.sh ]; then
-    . /usr/local/bin/thisroot.sh
     fi
 fi
 

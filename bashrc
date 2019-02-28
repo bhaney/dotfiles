@@ -26,8 +26,7 @@ fi
 if [[ $(uname -s) == 'Darwin' ]]; then
     #set up binaries from homebrew
     export PATH=/usr/local/bin:$PATH
-    export PKG_CONFIG_PATH=/usr/local/include:$PKG_CONFIG_PATH
-    export LD_LIBRARY_PATH=/usr/loca/lib:$LD_LIBRARY_PATH
+    export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig:$PKG_CONFIG_PATH
 fi
 
 #variables to export

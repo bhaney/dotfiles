@@ -13,6 +13,10 @@ fi
 
 
 #activate conda if available
+if [ -d "/anaconda3" ]; then
+    . /anaconda3/etc/profile.d/conda.sh
+fi
+#if installed conda through homebrew, it will be in /usr/local
 if [ -d "/usr/local/anaconda3" ]; then
     . /usr/local/anaconda3/etc/profile.d/conda.sh
 fi

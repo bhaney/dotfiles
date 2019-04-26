@@ -60,3 +60,9 @@ if [ -d "/usr/local/opt/go/libexec/bin" ]; then
     export PATH=$PATH:/usr/local/opt/go/libexec/bin
 fi
 
+#set up cuda binaries
+if [ -d "/usr/local/cuda-10.1/bin" ]; then
+    export PATH=/usr/local/cuda-10.1/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+fi
+

@@ -148,6 +148,7 @@ if has("autocmd")
   " set tw=80
   " put a color marker when you exceed 85 characters on a line
   autocmd FileType python setlocal colorcolumn=85
+  autocmd FileType python setlocal nonumber
   "autocmd FileType tex setlocal colorcolumn=85
   autocmd FileType tex setlocal formatoptions-=a
   " set tabs on file types accordingly

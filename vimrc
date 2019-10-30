@@ -64,6 +64,9 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
+" ignore the pep8 line errors
+let g:pymode_lint_ignore = "E501"
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set history=100		" keep 100 lines of command line history

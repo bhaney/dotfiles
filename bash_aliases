@@ -31,4 +31,4 @@ alias prox="ssh tier3 -D8080"
 alias octave="octave --no-gui"
 alias sr="screen -r"
 alias wttr="curl wttr.in"
-
+alias untar="tar -xvzf"

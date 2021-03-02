@@ -58,6 +58,8 @@ call vundle#begin()
     "-------------------=== Python  ===-----------------------------
     Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
     Plugin 'scrooloose/syntastic'               " Syntax checking plugin for Vim
+    "---------------=== Go ===--------------------------------
+    Plugin 'fatih/vim-go'                       " Go language support
     "---------------=== finances ===--------------------------------
     Plugin 'nathangrigg/vim-beancount'          " Hilighting for beancount
 
@@ -65,6 +67,8 @@ call vundle#end()                           " required
 filetype on
 filetype plugin on
 filetype plugin indent on
+
+let g:snipMate = { 'snippet_version' : 1 }
 
 " ignore the pep8 line errors
 let g:pymode_lint_ignore = "E501"

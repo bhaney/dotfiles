@@ -38,7 +38,6 @@ export SVN_EDITOR=vim
 export EDITOR=vim
 export CERN_USER=bhaney
 export RUCIO_ACCOUNT=bhaney
-export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
 
 #set up binaries in the .local directory
 if [ -d "$HOME/.local/bin" ]; then
@@ -61,11 +60,13 @@ if [ -d "/usr/local/opt/go/libexec/bin" ]; then
     export PATH=$PATH:/usr/local/opt/go/libexec/bin
 fi
 
-# paths for viam code
+# paths for viam work computer
 comp=$(hostname)
 if [[ $comp = "NambuGoldstone.local" ]]; then
+    export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
     export LD_LIBRARY_PATH=/Users/bijanh/opt/miniconda3/lib:/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
     export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:/System/Library/Frameworks/Python.framework/Versions/2.7/lib/pkgconfig/:$PKG_CONFIG_PATH
+    export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 #set up cuda binaries

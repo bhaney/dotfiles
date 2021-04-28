@@ -1,3 +1,9 @@
+test -f ~/.bashrc && source ~/.bashrc
+
+eval $(/opt/homebrew/bin/brew shellenv)
+
+# >>> conda initialize >>>
+### !! Contents within this block are managed by 'conda init' !!
 comp=$(hostname)
 if [[ $comp = "NambuGoldstone.local" ]]; then
     __conda_setup="$('/Users/bijanh/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -13,9 +19,4 @@ if [[ $comp = "NambuGoldstone.local" ]]; then
     unset __conda_setup
 fi
 # <<< conda initialize <<<
-
-eval $(/opt/homebrew/bin/brew shellenv)
-
-test -f ~/.bashrc && source ~/.bashrc
-
 

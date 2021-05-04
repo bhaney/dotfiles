@@ -59,6 +59,11 @@ if [[ $comp = "NambuGoldstone.local" ]]; then
     export PKG_CONFIG_PATH=/opt/homebrew/Cellar/arpack/3.8.0/lib/pkgconfig:$PKG_CONFIG_PATH
     export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH
 fi
+if [[ $comp = "visionquest.local" ]]; then
+    export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
+    export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+fi
 
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"

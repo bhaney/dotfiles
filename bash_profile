@@ -1,11 +1,14 @@
 test -f ~/.bashrc && source ~/.bashrc
 
-eval $(/opt/homebrew/bin/brew shellenv)
-
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
 # >>> conda initialize >>>
 ### !! Contents within this block are managed by 'conda init' !!
 comp=$(hostname)
 if [[ $comp = "NambuGoldstone.local" ]]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
     __conda_setup="$('/Users/bijanh/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
